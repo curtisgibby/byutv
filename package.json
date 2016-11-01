@@ -1,0 +1,28 @@
+{
+  "name": "byutv",
+  "version": "1.0.0",
+  "description": "Lets you scrape titles and descriptions, images from BYU-TV's unofficial API",
+  "main": "scrape.js",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "request": "^2.76.0",
+    "sharp": "^0.16.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node scrape.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curtisgibby/byutv.git"
+  },
+  "keywords": [
+    "byutv"
+  ],
+  "author": "Curtis Gibby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/curtisgibby/byutv/issues"
+  },
+  "homepage": "https://github.com/curtisgibby/byutv#readme"
+}
