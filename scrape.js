@@ -1,6 +1,7 @@
 var fs = require('fs');
 var request = require('request');
 var $ = require('cheerio')
+var chalk = require('chalk');
 
 // var showGuid = '2f11a156-dfaa-454c-a104-60165b2a5625'; // Random Acts
 var showGuid = 'c68c4e4f-6322-4a23-8b8e-a5be75b70635'; // Studio C
@@ -20,12 +21,12 @@ request(url, function(err, resp, html){
     }
     description = description.replace(/«/g, "'").trim();
     var airdate = $(episode).find('time').first().attr('datetime');
-    console.log("\n----------------------------------------- EPISODE -----------------------------------------"); //debug!
-    console.log("\ntitle\n-----"); //debug!
+    console.log(chalk.blue.bold("\n----------------------------------------- EPISODE -----------------------------------------")); //debug!
+    console.log(chalk.green("\ntitle\n-----")); //debug!
     console.log(title); //debug!
-    console.log("\ndescription\n-----------"); //debug!
+    console.log(chalk.green("\ndescription\n-----------")); //debug!
     console.log(description); //debug!
-    console.log("\nairdate\n-------"); //debug!
+    console.log(chalk.green("\nairdate\n-------")); //debug!
     console.log(airdate); //debug!
 
   })
