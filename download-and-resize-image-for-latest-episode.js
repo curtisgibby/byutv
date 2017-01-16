@@ -2,8 +2,8 @@ var fs = require('fs');
 var request = require('request');
 var sharp = require('sharp');
 
-// var showGuid = '2f11a156-dfaa-454c-a104-60165b2a5625'; // Random Acts
-var showGuid = 'c68c4e4f-6322-4a23-8b8e-a5be75b70635'; // Studio C
+var showGuid = require('./getShowGuidFromTitle.js').getShowGuidFromTitle();
+
 var url = 'http://www.byutv.org/api/Television/GetShowEpisodesByDate?context=Android%24US%24Release&showGuid=' + showGuid;
 
 request(url, function(err, resp, body){
