@@ -1,4 +1,4 @@
-function getShowGuidFromTitle(rawArgs) {
+function getShowGuidFromTitle(callback) {
   var rawTitle = 'Studio C';
   if (process.argv.length >= 3) {
     var rawTitle = process.argv[2];
@@ -15,18 +15,25 @@ function getShowGuidFromTitle(rawArgs) {
     case 'random':
     case 'random-acts':
     case 'randomacts':
-      return '2f11a156-dfaa-454c-a104-60165b2a5625';
+      return callback('2f11a156-dfaa-454c-a104-60165b2a5625');
       break;
+
     case 'tricked':
-      return '5215330f-fd7d-4f56-a0d8-11cefcb6f204';
+      return callback('5215330f-fd7d-4f56-a0d8-11cefcb6f204');
       break;
+
     case 'studio-c':
     case 'studioc':
-      return 'c68c4e4f-6322-4a23-8b8e-a5be75b70635';
+      return callback('c68c4e4f-6322-4a23-8b8e-a5be75b70635');
       break;
+
     default:
-      console.error('Unknown Show Title');
-      process.exit(1);
+      var request = require('then-request');
+      var url = 'http://www.byutv.org/api/Television/GetShowsByName?context=Android%24US%24Release&name=' + encodeURIComponent(rawTitle);
+      request('GET', url).then(function (res) {
+        var jsonData = JSON.parse(res.getBody('utf-8'));
+        callback(jsonData[0].guid);
+      });
   }
 }
 
