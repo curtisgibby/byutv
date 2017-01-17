@@ -32,7 +32,11 @@ function getShowGuidFromTitle(callback) {
       var url = 'http://www.byutv.org/api/Television/GetShowsByName?context=Android%24US%24Release&name=' + encodeURIComponent(rawTitle);
       request('GET', url).then(function (res) {
         var jsonData = JSON.parse(res.getBody('utf-8'));
-        callback(jsonData[0].guid);
+        if (0 in jsonData) {
+          callback(jsonData[0].guid);
+        } else {
+          console.error("Unknown show!");
+        }
       });
   }
 }
