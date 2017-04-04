@@ -1,4 +1,5 @@
 var fs = require('fs');
+var moment = require('moment-timezone');
 var request = require('request');
 var $ = require('cheerio')
 var chalk = require('chalk');
@@ -22,6 +23,7 @@ function scrape(showGuid) {
       }
       description = description.replace(/«/g, "'").trim();
       var airdate = $(episode).find('time').first().attr('datetime');
+      airdate = moment(airdate).tz("America/Denver").format('YYYY-MM-DD HH:mm:ss');
       console.log(chalk.blue.bold("\n----------------------------------------- EPISODE -----------------------------------------"));
       console.log(chalk.green("\ntitle\n-----"));
       console.log(title);

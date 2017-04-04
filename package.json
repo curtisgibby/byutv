@@ -4,7 +4,10 @@
   "description": "Lets you scrape titles and descriptions, images from BYU-TV's unofficial API",
   "main": "scrape.js",
   "dependencies": {
+    "chalk": "^1.1.3",
     "cheerio": "^0.22.0",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.12",
     "request": "^2.76.0",
     "sharp": "^0.16.2",
     "then-request": "^2.2.0"
