@@ -10,19 +10,22 @@ function getApiDataForShow(showGuid) {
   request(url, function(err, resp, body){
     if (!err && resp.statusCode == 200) {
       var jsonContent = JSON.parse(body);
-      for ( var i = 0; i < 1; i++) {
-        var episode = jsonContent[i];
-        var originalFilename = episode.name + '.original.jpg';
-        downloadFile(episode.largeImage, originalFilename, function(){
-          var outputFilename = episode.name + '.400x225.jpg';
-          sharp(originalFilename)
-            .resize(400, 225)
-            .toFile(outputFilename, function(err) {
-              fs.unlink(originalFilename);
-            });
-          console.log("saved file to", outputFilename);
-        });
+      var i = 0;
+      if (process.argv.length >= 4) {
+        i = parseInt(process.argv[3]);
       }
+
+      var episode = jsonContent[i];
+      var originalFilename = episode.name + '.original.jpg';
+      downloadFile(episode.largeImage, originalFilename, function(){
+        var outputFilename = episode.name + '.400x225.jpg';
+        sharp(originalFilename)
+          .resize(400, 225)
+          .toFile(outputFilename, function(err) {
+            fs.unlink(originalFilename);
+          });
+        console.log("saved file to", outputFilename);
+      });
     }
   });
 }
