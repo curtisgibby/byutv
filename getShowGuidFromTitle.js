@@ -12,6 +12,10 @@ function getShowGuidFromTitle(callback) {
     .replace(/-+$/, '');
 
   switch (parsedTitle) {
+    case 'extinct':
+      return callback('e5f3bb84-3e34-4b51-8d71-e4d538fd93b2');
+      break;
+
     case 'random':
     case 'random-acts':
     case 'randomacts':
