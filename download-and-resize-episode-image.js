@@ -1,6 +1,7 @@
 var fs = require('fs');
 var request = require('request');
 var sharp = require('sharp');
+var sanitize = require('sanitize-filename');
 
 require('./getShowGuidFromTitle.js').getShowGuidFromTitle(getApiDataForShow);
 
@@ -16,9 +17,9 @@ function getApiDataForShow(showGuid) {
       }
 
       var episode = jsonContent[i];
-      var originalFilename = episode.name + '.original.jpg';
+      var originalFilename = sanitize(episode.name) + '.original.jpg';
       downloadFile(episode.largeImage, originalFilename, function(){
-        var outputFilename = episode.name + '.400x225.jpg';
+        var outputFilename = sanitize(episode.name) + '.400x225.jpg';
         sharp(originalFilename)
           .resize(400, 225)
           .toFile(outputFilename, function(err) {

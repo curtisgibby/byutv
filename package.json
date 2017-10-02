@@ -9,6 +9,7 @@
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.12",
     "request": "^2.76.0",
+    "sanitize-filename": "^1.6.1",
     "sharp": "^0.16.2",
     "then-request": "^2.2.0"
   },
