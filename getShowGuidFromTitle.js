@@ -26,6 +26,10 @@ function getShowGuidFromTitle(callback) {
       return callback('5215330f-fd7d-4f56-a0d8-11cefcb6f204');
       break;
 
+    case 'just-like-mom-and-dad':
+      return callback('8b58273c-013f-4370-b50d-e6d68d2ed322');
+      break;
+
     case 'studio-c':
     case 'studioc':
       return callback('c68c4e4f-6322-4a23-8b8e-a5be75b70635');
