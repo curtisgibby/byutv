@@ -1,9 +1,9 @@
 var chalk = require('chalk');
 var fs = require('fs');
+var Jimp = require("jimp");
 var moment = require('moment-timezone');
 var request = require('request');
 var sanitize = require('sanitize-filename');
-var sharp = require('sharp');
 
 require('./getShowGuidFromTitle.js').getShowGuidFromTitle(getApiDataForShow);
 
@@ -74,9 +74,11 @@ function getApiDataForSeason(seasonid) {
       var originalFilename = sanitize(episode.subtitle) + '.' + image.size + '.jpg';
       downloadFile(image.url, originalFilename, function(){
         var outputFilename = sanitize(episode.subtitle) + '.400x225.jpg';
-        sharp(originalFilename)
-          .resize(400, 225)
-          .toFile(outputFilename, function(err) {});
+        Jimp.read(originalFilename, function (err, image) {
+            if (err) throw err;
+            image.resize(400, 225) // resize
+                 .write(outputFilename); // save
+        });
         console.log(chalk.green("\nimage\n-----"));
         console.log("saved file to", outputFilename);
       });
