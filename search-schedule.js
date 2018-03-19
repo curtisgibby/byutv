@@ -31,12 +31,12 @@ request(options, function(err, resp, body){
         itemsSeenPreviously.push(item.episodeTitle);
   
         var airdate = moment(item.begin).tz("America/Denver").format('YYYY-MM-DD HH:mm:ss');
-        console.log(chalk.blue.bold("\n----------------------------------------- Episode -----------------------------------------"));
-        console.log(chalk.green("\nname\n----"));
+        console.log(chalk.blue.bold("----------------------------------------- Episode -----------------------------------------"));
+        console.log(chalk.green("name:"));
         console.log(item.episodeTitle);
-        console.log(chalk.green("\ndescription\n-----------"));
+        console.log(chalk.green("description:"));
         console.log(item.episodeDescription);
-        console.log(chalk.green("\nairdate\n-------"));
+        console.log(chalk.green("airdate:"));
         console.log(airdate);
       }
     });
