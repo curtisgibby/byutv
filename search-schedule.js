@@ -7,7 +7,7 @@ if (process.argv.length >= 3) {
   var rawTitle = process.argv[2];
 }
 
-var url = 'https://api.byutv.org/api3/schedule/searchschedule?start=0&limit=25&channel=byutv&query=' + rawTitle;
+var url = 'https://api.byutv.org/api3/schedule/searchschedule?start=0&limit=100&channel=byutv&query=' + rawTitle;
 
 var options = {
   url: url,
