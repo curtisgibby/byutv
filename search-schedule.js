@@ -21,21 +21,26 @@ request(options, function(err, resp, body){
   if (!err && resp.statusCode == 200) {
     var jsonContent = JSON.parse(body);
     items = jsonContent.items;
-    itemsSeenPreviously = [];
+    itemsSeenPreviously = itemTitlesSeenPreviously = [];
     Object.keys(items).forEach(function(key) {
       item = items[key];
-      if (itemsSeenPreviously.indexOf(item.episodeTitle) === -1) {
-        itemsSeenPreviously.push(item.episodeTitle);
-  
-        var airdate = moment(item.begin).tz("America/Denver").format('YYYY-MM-DD HH:mm:ss');
-        console.log(chalk.blue.bold("----------------------------------------- Episode -----------------------------------------"));
-        console.log(chalk.green("name:"));
-        console.log(item.episodeTitle);
-        console.log(chalk.green("description:"));
-        console.log(item.episodeDescription);
-        console.log(chalk.green("airdate:"));
-        console.log(airdate);
+      if (itemTitlesSeenPreviously.indexOf(item.episodeTitle) === -1) {
+        itemTitlesSeenPreviously.push(item.episodeTitle);
+        itemsSeenPreviously.push(item);
       }
+    });
+    itemsSeenPreviously.sort((a,b) => b.episodeTitle < a.episodeTitle ? 1 : -1);
+
+    Object.keys(itemsSeenPreviously).forEach(function(key) {
+      item = itemsSeenPreviously[key];
+      var airdate = moment(item.begin).tz("America/Denver").format('YYYY-MM-DD HH:mm:ss');
+      console.log(chalk.blue.bold("----------------------------------------- Episode -----------------------------------------"));
+      console.log(chalk.green("name:"));
+      console.log(item.episodeTitle);
+      console.log(chalk.green("description:"));
+      console.log(item.episodeDescription);
+      console.log(chalk.green("airdate:"));
+      console.log(airdate);
     });
   }
 });
