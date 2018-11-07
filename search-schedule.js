@@ -30,7 +30,10 @@ request(options, function(err, resp, body){
         itemsSeenPreviously.push(item);
       }
     });
-    itemsSeenPreviously.sort((a,b) => b.episodeTitle < a.episodeTitle ? 1 : -1);
+
+    if (process.argv.length >= 4) {
+      itemsSeenPreviously.sort((a,b) => b.episodeTitle < a.episodeTitle ? 1 : -1);
+    }
 
     Object.keys(itemsSeenPreviously).forEach(function(key) {
       item = itemsSeenPreviously[key];
