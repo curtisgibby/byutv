@@ -21,7 +21,8 @@ request(options, function(err, resp, body){
   if (!err && resp.statusCode == 200) {
     var jsonContent = JSON.parse(body);
     items = jsonContent.items;
-    itemsSeenPreviously = itemTitlesSeenPreviously = [];
+    itemsSeenPreviously = [];
+    itemTitlesSeenPreviously = [];
     Object.keys(items).forEach(function(key) {
       item = items[key];
       if (itemTitlesSeenPreviously.indexOf(item.episodeTitle) === -1) {
