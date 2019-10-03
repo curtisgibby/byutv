@@ -12,6 +12,16 @@ function getShowGuidFromTitle(callback) {
     .replace(/-+$/, '');
 
   switch (parsedTitle) {
+        case 'battle':
+        case 'battle-of-the-ages':
+            return callback('2e28d651-f305-45b0-9276-abf6614a7234');
+            break;
+
+        case 'making-good':
+        case 'making':
+            return callback('c2022552-b6b7-4763-91d5-493926290c5d');
+            break;
+
     case 'extinct':
       return callback('e5f3bb84-3e34-4b51-8d71-e4d538fd93b2');
       break;
