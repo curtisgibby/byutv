@@ -63,7 +63,7 @@ function getApiDataForSeason(seasonid) {
             console.log(chalk.green("\nname\n----"));
             console.log(episode.subtitle);
             console.log(chalk.green("\ndescription\n-----------"));
-            console.log(episode.description);
+            console.log(episode.description.replace("\r", ' '));
             console.log(chalk.green("\nairdate\n-------"));
             console.log(airdate);
 
