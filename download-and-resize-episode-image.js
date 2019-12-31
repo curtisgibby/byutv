@@ -2,6 +2,7 @@ var chalk = require('chalk');
 var fs = require('fs');
 var Jimp = require("jimp");
 var moment = require('moment-timezone');
+const path = require('path');
 var request = require('request');
 var sanitize = require('sanitize-filename');
 
@@ -70,10 +71,12 @@ function getApiDataForSeason(seasonid) {
             Object.keys(images).forEach(function(key) {
                 image = images[key]; // ends up with the largest one
             });
+            const dir = path.normalize(__dirname + '/' + episode.title + '/');
+            !fs.existsSync(dir) && fs.mkdirSync(dir);
 
-            var originalFilename = sanitize(episode.subtitle) + '.' + image.size + '.jpg';
+            var originalFilename = dir + sanitize(episode.subtitle) + '.' + image.size + '.jpg';
             downloadFile(image.url, originalFilename, function() {
-                var outputFilename = sanitize(episode.subtitle) + '.640x360.jpg';
+                var outputFilename = dir + sanitize(episode.subtitle) + '.640x360.jpg';
                 Jimp.read(originalFilename, function(err, image) {
                     if (err) throw err;
                     image.resize(640, 360) // resize
