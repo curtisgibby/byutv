@@ -67,7 +67,16 @@ function getApiDataForSeason(seasonid) {
             console.log(chalk.green("\nairdate\n-------"));
             console.log(airdate);
 
-            var images = episode.images[0].images;
+            var images = false;
+            if (episode.images) {
+                images = episode.images[0].images;
+            } else if (episode.listImage.images) {
+                images = episode.listImage.images;
+            }
+            if (!images) {
+                throw new Error("unable to find images");
+            }
+            
             Object.keys(images).forEach(function(key) {
                 image = images[key]; // ends up with the largest one
             });
