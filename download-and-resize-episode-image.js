@@ -73,10 +73,10 @@ function getApiDataForSeason(seasonid) {
 
             var originalFilename = sanitize(episode.subtitle) + '.' + image.size + '.jpg';
             downloadFile(image.url, originalFilename, function() {
-                var outputFilename = sanitize(episode.subtitle) + '.400x225.jpg';
+                var outputFilename = sanitize(episode.subtitle) + '.640x360.jpg';
                 Jimp.read(originalFilename, function(err, image) {
                     if (err) throw err;
-                    image.resize(400, 225) // resize
+                    image.resize(640, 360) // resize
                         .write(outputFilename); // save
                 });
                 console.log(chalk.green("\nimage\n-----"));
