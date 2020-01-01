@@ -40,6 +40,11 @@ function getShowGuidFromTitle(callback) {
             return callback('8b58273c-013f-4370-b50d-e6d68d2ed322');
             break;
 
+        case 'show-offs':
+        case 'showoffs':
+            return callback('8a9a1113-59d4-4f33-9cb0-c46c366804cc');
+            break;
+
         case 'studio-c':
         case 'studioc':
             return callback('c68c4e4f-6322-4a23-8b8e-a5be75b70635');
