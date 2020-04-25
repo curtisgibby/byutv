@@ -50,6 +50,12 @@ function getShowGuidFromTitle(callback) {
             return callback('c68c4e4f-6322-4a23-8b8e-a5be75b70635');
             break;
 
+        case 'comedyiq':
+        case 'comedy':
+        case 'waynebradyscomedyiq':
+            return callback('3387a2fd-369d-44c2-a518-66856a03d847');
+            break;
+
         default:
             var request = require('then-request');
             var url = 'http://www.byutv.org/api/Television/GetShowsByName?context=Android%24US%24Release&name=' + encodeURIComponent(rawTitle);
