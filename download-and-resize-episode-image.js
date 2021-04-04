@@ -1,6 +1,5 @@
 var chalk = require('chalk');
 var fs = require('fs');
-var Jimp = require("jimp");
 var moment = require('moment-timezone');
 const path = require('path');
 var request = require('request');
@@ -59,21 +58,18 @@ var getEpisodeImage = function(episode) {
     Object.keys(images).forEach(function(key) {
         image = images[key]; // ends up with the largest one
     });
-    const dir = path.normalize(__dirname + '/' + episode.seasonTitle + '/');
+    const dir = path.normalize(__dirname + '/' + episode.showTitle + '/' + episode.seasonTitle + '/');
     !fs.existsSync(dir) && fs.mkdirSync(dir);
 
     var originalFilename = dir + sanitize(episode.title) + '.' + image.size + '.jpg';
     downloadFile(image.url, originalFilename, function() {
-        var outputFilename = dir + sanitize(episode.title) + '.640x360.jpg';
         Jimp.read(originalFilename, function(err, image) {
             if (err) throw err;
             image.write(originalFilename); // save
-            image.resize(640, 360) // resize
-                .write(outputFilename); // save
         });
         console.log(chalk.green("\nimage"));
-        console.log("original URL: ", image.url);
-        console.log("saved file to", outputFilename);
+        console.log("original URL:", image.url);
+        console.log("saved file to", originalFilename);
     });
 }
 
