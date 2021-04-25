@@ -2,6 +2,7 @@ var chalk = require('chalk');
 var fs = require('fs');
 var moment = require('moment-timezone');
 const path = require('path');
+const Jimp = require('jimp');
 var request = require('request');
 var sanitize = require('sanitize-filename');
 var { getEpisode, getListItems, getPage } = require('./byutv-api.js');
