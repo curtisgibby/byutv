@@ -26,6 +26,10 @@ function getShowGuidFromTitle(callback) {
             return callback('e5f3bb84-3e34-4b51-8d71-e4d538fd93b2');
             break;
 
+        case 'grace-notes':
+            return callback('8b20c104-42fa-44c6-ac07-43febd77b163');
+            break;
+
         case 'random':
         case 'random-acts':
         case 'randomacts':
