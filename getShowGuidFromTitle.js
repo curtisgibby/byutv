@@ -12,6 +12,12 @@ function getShowGuidFromTitle(callback) {
         .replace(/-+$/, '');
 
     switch (parsedTitle) {
+        case 'allroundchampion':
+        case 'all-round-champion':
+        case 'arc':
+            return callback('794275e1-3c23-493f-a27c-90304813c7cb');
+            break;
+
         case 'battle':
         case 'battle-of-the-ages':
             return callback('2e28d651-f305-45b0-9276-abf6614a7234');
